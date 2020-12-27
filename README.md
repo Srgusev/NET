@@ -3,24 +3,25 @@
 1. Первая программа даёт посмотреть какие IP заняты в локальной сети.
 
   Первым дело узнаем IP нашего сетевого интерфейса, в какой мы вообще сети :
-
       import socket
       def getMyIp():
           s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #Создаем сокет (UDP)
           s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1) # Настраиваем сокет на BROADCAST вещание.
           s.connect(('<broadcast>', 0))
           return s.getsockname()[0]
-socket.AF_INET — для сокета используем IPv4 .  
-socket.SOCK_DGRAM — тип сокета. Датаграммный сокет (UDP) .  
-getsockname() — Вернет сокету его собственный адрес.  
+  
+> socket.AF_INET — для сокета используем IPv4 .  
+> socket.SOCK_DGRAM — тип сокета. Датаграммный сокет (UDP) .  
+> getsockname() — Вернет сокету его собственный адрес.  
   Далее на надо узнать платформу.
   Введем диапазон адресов для сканирования :
 
-start_point = int(input("Enter the Starting Number: "))  
-end_point = int(input("Enter the Last Number: "))  
+> start_point = int(input("Enter the Starting Number: "))  
+> end_point = int(input("Enter the Last Number: "))
+
   Ну теперь напишем саму функцию сканирования.  
-  os.popen(comm) — Класс Popen Python выполняет дочернюю программу в новом процессе.  
-  data = response.readlines() — читаем ответ от утилиты.  
+> os.popen(comm) — Класс Popen Python выполняет дочернюю программу в новом процессе.  
+> data = response.readlines() — читаем ответ от утилиты.  
 Дальше просто парсим ответ, если есть TTL в строке значит пинг успешен.
 Еще добавим многопоточность что бы быстрей пинговать. 
 
